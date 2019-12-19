@@ -6,7 +6,7 @@ import NavLink from '../components/NavLink'
 import { Context as AuthContext } from '../context/AuthContext'
 
 const SignupScreen = ({ navigation }) => {
-  const { state, signup, clearErrorMessage } = useContext(AuthContext)
+  const { state, signup, clearErrorMessage} = useContext(AuthContext)
 
   return (
     <View style={styles.container}>
@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1, 
     justifyContent: 'center',
-    marginBottom: 250
+    marginBottom: 200
   },
   errorMessage: {
     fontSize: 16,
