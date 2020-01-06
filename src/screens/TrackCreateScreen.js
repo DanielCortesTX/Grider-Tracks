@@ -9,25 +9,33 @@ import { Context as LocationContext } from '../context/LocationContext'
 
 const TrackCreateScreen = () => {
   const { addLocation } = useContext(LocationContext)
+
   const [err, setErr] = useState(null)
+
   const startWatching = async () => {
     try {
       await requestPermissionsAsync()
-      await watchPositionAsync({
-        accuracy: Accuracy.BestForNavigation,
-        timeInterval: 1000,
-        distance: 10
-      }, (location) => {
-        addLocation(location)
-      })
+      await watchPositionAsync(
+        {
+          accuracy: Accuracy.BestForNavigation,
+          timeInterval: 1000,
+          distance: 10
+        }, 
+        (location) => {
+          addLocation(location)
+        }
+      )
+      console.log(location)
     } catch (err) {
-      setErr(e)
+      setErr(err)
+      console.log(err)
     }
   }
 
   useEffect(() => {
     startWatching()
   }, [])
+
   return (
     <SafeAreaView forceInset={{ top: 'always' }}>
       <Text h2>Create A Track</Text>
